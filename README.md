@@ -20,8 +20,6 @@ Private AI skills monorepo for local agent workflows.
 │  ├─ coding/
 │  ├─ writing/
 │  └─ _shared/
-├─ publish/
-│  └─ skills/
 ├─ docs/
 └─ tooling/
 ```
@@ -29,8 +27,7 @@ Private AI skills monorepo for local agent workflows.
 ### Responsibilities
 
 - `vendors/`: read-only upstream source snapshots
-- `skills/`: editable source skills, organized by workflow area
-- `publish/skills/`: flattened install surface consumed by `npx skills`
+- `skills/`: editable source skills and direct install surface, organized by workflow area
 - `docs/`: architecture, standards, sync notes
 - `tooling/`: thin local scripts
 
@@ -41,16 +38,16 @@ Private AI skills monorepo for local agent workflows.
 ## Editing Workflow
 
 1. Edit a skill under `skills/`
-2. Export source skills into `publish/skills/`
-3. Reinstall from `publish/` into local agents with `npx skills`
+2. Validate source skills
+3. Reinstall from `skills/` into local agents with `npx skills`
 
-### Export Only
+### Validate Only
 
 ```bash
-tooling/export-skills.sh
+tooling/validate-skills.sh
 ```
 
-### Export And Reinstall
+### Validate And Reinstall
 
 ```bash
 tooling/sync-local.sh
@@ -71,10 +68,10 @@ tooling/sync-local.sh claude-code codex
 
 ## How Updates Work
 
-`npx skills` does not point agents directly at this repo. The update flow is:
+`npx skills` can point agents directly at this repo's source tree. The update flow is:
 
 ```text
-skills/ -> publish/skills/ -> npx skills add -> local agent skill directories
+skills/ -> npx skills add -> local agent skill directories
 ```
 
 That means when you change a local skill, you update it by running:
@@ -90,8 +87,21 @@ Then start a new agent session to ensure the updated skill content is reloaded.
 Manual install remains available if you want it:
 
 ```bash
-npx skills add ./publish -g -a claude-code -a codex -a cursor -a kiro-cli -y
+npx skills add ./skills -g -a claude-code -a codex -a cursor -a kiro-cli -y
 ```
+
+You can also target part of the tree directly:
+
+```bash
+npx skills add ./skills/planning -g -a codex -y
+npx skills add ./skills/planning/brainstorming -g -a codex -y
+```
+
+## Provenance
+
+Keep source folder names focused on the skill's purpose, not its origin. If a skill's lineage matters, add a neighboring `SOURCE.md` using the template in `docs/provenance-template.md`.
+
+This keeps install paths clean while preserving upstream traceability in a durable, reviewable place.
 
 ## Kiro Note
 

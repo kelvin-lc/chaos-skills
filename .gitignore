@@ -1,0 +1,20 @@
+# Generated publish output
+publish/skills/
+
+# macOS
+.DS_Store
+._*
+
+# Editors
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Node
+node_modules/
+
+# Environment
+.env
+.env.local

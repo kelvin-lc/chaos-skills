@@ -3,10 +3,9 @@
 ## Layers
 
 - `vendors/`: upstream sources kept read-only for future sync
-- `skills/`: editable source skills organized by workflow area
-- `publish/skills/`: flattened install surface for `npx skills`
+- `skills/`: editable source skills and direct install surface organized by workflow area
 - `docs/`: local governance, sync notes, and architecture docs
-- `tooling/`: thin local scripts for export and install helpers
+- `tooling/`: thin local scripts for validation and install helpers
 
 ## Source Categories
 
@@ -44,10 +43,18 @@
 
 - `writing-skills`
 
-## Publish Rule
+## Install Rule
 
-Each source skill at `skills/<category>/<skill>/` is exported to:
+Each source skill lives at:
 
-`publish/skills/<frontmatter.name>/`
+`skills/<category>/<skill>/`
 
-The publish layer stays flat so installation stays simple across clients.
+The public skill identifier comes from `frontmatter.name`, while the folder name remains an internal organization detail.
+
+`npx skills` installs directly from the `skills/` tree, either from the full source root or from narrower subpaths such as `skills/planning/`.
+
+## Provenance Rule
+
+Folder names should describe the skill's purpose, not its lineage.
+
+If provenance matters, store it in a sidecar `SOURCE.md` next to the skill. Use `docs/provenance-template.md` as the standard format.

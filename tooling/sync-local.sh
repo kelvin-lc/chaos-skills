@@ -16,9 +16,9 @@ else
   AGENTS=("${DEFAULT_AGENTS[@]}")
 fi
 
-"$ROOT_DIR/tooling/export-skills.sh"
+"$ROOT_DIR/tooling/validate-skills.sh"
 
-cmd=(npx skills add "$ROOT_DIR/publish" -g -y)
+cmd=(npx skills add "$ROOT_DIR/skills" -g -y)
 
 for agent in "${AGENTS[@]}"; do
   cmd+=(-a "$agent")
