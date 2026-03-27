@@ -26,9 +26,9 @@
 
 ### 职责分配
 
-- **`vendors/`** — 仅供读取(read-only)的上游源代码快照，不可直接编辑
-- **`skills/`** — 可编辑的源技能文件及直接安装区域，按工作流领域组织
-- **`tooling/`** — 轻量级本地脚本（验证、同步安装）
+- `**vendors/**` — 仅供读取(read-only)的上游源代码快照，不可直接编辑
+- `**skills/**` — 可编辑的源技能文件及直接安装区域，按工作流领域组织
+- `**tooling/**` — 轻量级本地脚本（验证、同步安装）
 
 ## 安装与卸载
 
@@ -106,24 +106,21 @@ tooling/validate-skills.sh
 git subtree pull --prefix=vendors/superpowers https://github.com/obra/superpowers.git main --squash
 ```
 
-拉取后，对比 `vendors/superpowers/skills/` 与 `skills/` 的差异，选择性地将变更移植到本地技能中。映射关系见 [`PROVENANCE.md`](PROVENANCE.md)。
+拉取后，对比 `vendors/superpowers/skills/` 与 `skills/` 的差异，选择性地将变更移植到本地技能中。映射关系见 `[PROVENANCE.md](PROVENANCE.md)`。
 
 ### 增加新的上游源
 
 1. 以 subtree 方式引入新的上游仓库：
-
-   ```bash
+  ```bash
    git subtree add --prefix=vendors/<name> <repo-url> <branch> --squash
-   ```
-
+  ```
 2. 将需要的技能从 `vendors/<name>/` 复制到 `skills/<category>/` 下并进行本地适配
-3. 在 [`PROVENANCE.md`](PROVENANCE.md) 中新增一个章节，记录该上游的映射关系
+3. 在 `[PROVENANCE.md](PROVENANCE.md)` 中新增一个章节，记录该上游的映射关系
 4. 运行验证和同步：
-
-   ```bash
+  ```bash
    tooling/validate-skills.sh
    tooling/sync-local.sh
-   ```
+  ```
 
 ### 更新机制
 
@@ -137,14 +134,5 @@ skills/ → npx skills add → 本地智能体技能目录
 
 ## 来源追踪
 
-所有技能的上游对应关系维护在 [`PROVENANCE.md`](PROVENANCE.md) 中，按上游仓库分章节、以表格集中管理。
+所有技能的上游对应关系维护在 `[PROVENANCE.md](PROVENANCE.md)` 中，按上游仓库分章节、以表格集中管理。
 
-## Kiro 备注
-
-Kiro 可能还需要在 `.kiro/agents/<agent>.json` 中配置 `resources`：
-
-```json
-{
-  "resources": ["skill://.kiro/skills/**/SKILL.md"]
-}
-```
