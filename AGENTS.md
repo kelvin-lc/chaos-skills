@@ -8,7 +8,7 @@ This repository is a private skills monorepo. Treat it as a source-and-install p
 - Never edit `vendors/` directly. It is an upstream snapshot for reference and future sync.
 - The public skill identifier comes from the `name:` field inside each `SKILL.md`, not from the source folder name.
 - Duplicate `name:` values will break validation and install targeting.
-- Keep source folder names focused on the skill's purpose. If provenance matters, capture it in a sidecar `SOURCE.md`, not in the folder name.
+- Keep source folder names focused on the skill's purpose. If provenance matters, update the mapping table in `PROVENANCE.md`.
 
 ## Repository Map
 
@@ -17,22 +17,22 @@ This repository is a private skills monorepo. Treat it as a source-and-install p
 - `skills/coding/`: engineering workflow skills
 - `skills/writing/`: authoring and documentation skills
 - `vendors/superpowers/`: upstream reference, kept read-only
-- `docs/`: local architecture and governance notes
 - `tooling/`: validation and local install helpers
 
 ## Editing Rules
 
 1. Read the source skill first, plus any files it references directly.
 2. If a change is inspired by `vendors/superpowers`, port only the needed parts into `skills/`. Do not patch the vendor snapshot.
-3. Keep frontmatter accurate:
+3. **When creating or substantially editing a skill, use the `writing-skills` skill.** It provides the authoritative guide for SKILL.md structure, frontmatter format, description optimization, and quality standards. Load it via the Skill tool before starting any skill authoring work.
+4. Keep frontmatter accurate:
    - `name` must stay unique across all source skills.
    - `description` should optimize for triggering conditions first.
    - Prefer descriptions that start with `Use when...`.
    - Do not summarize the whole workflow in `description`; keep workflow detail in the body.
-4. Keep `SKILL.md` lean. Move bulky references, reusable scripts, or large examples into side files only when they reduce prompt bloat or improve reliability.
-5. Follow the existing category layout instead of inventing new top-level buckets unless the user explicitly asks for that reorganization.
-6. If the user asks for a change in installed behavior, update source under `skills/` first, then run validation and reinstall from `skills/`.
-7. If provenance needs to be preserved, add or update a neighboring `SOURCE.md` using the repo template in `docs/provenance-template.md`.
+5. Keep `SKILL.md` lean. Move bulky references, reusable scripts, or large examples into side files only when they reduce prompt bloat or improve reliability.
+6. Follow the existing category layout instead of inventing new top-level buckets unless the user explicitly asks for that reorganization.
+7. If the user asks for a change in installed behavior, update source under `skills/` first, then run validation and reinstall from `skills/`.
+8. If provenance needs to be preserved, update the mapping table in `PROVENANCE.md`.
 
 ## Creating Or Renaming Skills
 
@@ -70,11 +70,11 @@ After syncing, start a new agent session if the goal is to test freshly updated 
 - If the task changed a skill, confirm the source edit lives under `skills/`.
 - If the task changed a skill, run validation so duplicate `name:` values and missing `SKILL.md` files are caught.
 - If the task changed a skill, confirm `name:` still matches the intended public skill identifier.
-- If provenance matters for the task, confirm `SOURCE.md` exists and reflects the current upstream or inspiration.
+- If provenance matters for the task, confirm `PROVENANCE.md` reflects the current upstream or inspiration.
 - If a changed skill depends on auxiliary files, make sure a direct install from `skills/` includes them.
 
 ## Useful References
 
 - `README.md`
-- `docs/architecture.md`
+- `PROVENANCE.md`
 - `skills/writing/writing-skills/anthropic-best-practices.md`
