@@ -61,7 +61,7 @@ npx skills add ./skills/coding/systematic-debugging -g -a claude-code -y
 ### 卸载技能
 
 ```bash
-npx skills remove <skill-name> -a claude-code
+npx skills remove <skill-name> -g -a claude-code
 ```
 
 ### 卸载指定智能体的全部技能
@@ -74,6 +74,12 @@ npx skills remove --all -y -g -a codex
 - `-y`：自动确认，无需交互式确认
 - `-g`：操作全局技能目录
 - `-a codex`：目标智能体为 `codex`
+
+> **已知限制**：对于 Amp、Codex 等 universal agent，`npx skills` 会将技能安装到共享目录 `~/.agents/skills/`，即使使用 `--copy` 也无法绕过（[上游 bug](https://github.com/vercel-labs/skills/issues/810)）。因此 `remove -a codex` 无法阻止 Codex 继续看到技能。如需彻底移除，使用不带 `-a` 的命令：
+>
+> ```bash
+> npx skills remove --all -y -g
+> ```
 
 ### 查看已安装的技能
 
@@ -135,4 +141,3 @@ skills/ → npx skills add → 本地智能体技能目录
 ## 来源追踪
 
 所有技能的上游对应关系维护在 `[PROVENANCE.md](PROVENANCE.md)` 中，按上游仓库分章节、以表格集中管理。
-

@@ -41,6 +41,7 @@ This repository is a private skills monorepo. Treat it as a source-and-install p
 - Treat `name:` as the public identifier. Changing it changes install targeting and the skill's public identity.
 - If you rename a skill, verify references and reinstall behavior after validation.
 - Keep instructions concrete and procedural. Assume the model is already capable; include only repo-specific guidance and genuinely useful constraints.
+- **When converting external files into skills** (e.g. Cursor commands from `~/.cursor/commands/`, other tool configs), you MUST update `PROVENANCE.md` with the source path. This is not optional — every skill must have its origin tracked.
 
 ## Required Workflow After Edits
 
@@ -70,7 +71,7 @@ After syncing, start a new agent session if the goal is to test freshly updated 
 - If the task changed a skill, confirm the source edit lives under `skills/`.
 - If the task changed a skill, run validation so duplicate `name:` values and missing `SKILL.md` files are caught.
 - If the task changed a skill, confirm `name:` still matches the intended public skill identifier.
-- If provenance matters for the task, confirm `PROVENANCE.md` reflects the current upstream or inspiration.
+- If the task created a new skill or converted an external file, confirm `PROVENANCE.md` has been updated with the source origin. This is mandatory, not conditional.
 - If a changed skill depends on auxiliary files, make sure a direct install from `skills/` includes them.
 
 ## Useful References
