@@ -22,3 +22,11 @@ Source: <https://github.com/obra/superpowers>
 | `vendors/superpowers/skills/verification-before-completion` | `skills/coding/verification-before-completion` |
 | `vendors/superpowers/skills/writing-plans` | `skills/planning/writing-plans` |
 | `vendors/superpowers/skills/writing-skills` | `skills/writing/writing-skills` |
+
+## Cursor Commands
+
+Source: `~/.cursor/commands/`
+
+| Upstream | Local |
+| ---------------------------------------- | -------------------------------------------- |
+| `~/.cursor/commands/create-pr.md` | `skills/coding/creating-pull-requests` |
