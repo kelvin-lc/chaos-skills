@@ -30,3 +30,11 @@ Source: `~/.cursor/commands/`
 | Upstream | Local |
 | ---------------------------------------- | -------------------------------------------- |
 | `~/.cursor/commands/create-pr.md` | `skills/coding/creating-pull-requests` |
+
+## Original Skills
+
+Skills created in this repository (not ported from upstream).
+
+| Skill | Notes |
+| ---------------------------------------- | -------------------------------------------- |
+| `skills/coding/probing-api-keys` | Probe LLM API keys to discover accessible models (Azure OpenAI, OpenAI, Anthropic, resellers) |
