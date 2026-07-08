@@ -38,7 +38,7 @@
 tooling/sync-local.sh
 ```
 
-默认目标：`amp`、`claude-code`、`codex`、`cursor`、`kiro-cli`。
+默认目标：`amp`、`claude-code`、`codex`、`cursor`。
 
 ### 安装全部技能到指定智能体
 

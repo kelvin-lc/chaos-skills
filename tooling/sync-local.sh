@@ -8,7 +8,6 @@ DEFAULT_AGENTS=(
   claude-code
   codex
   cursor
-  kiro-cli
 )
 
 if [[ "$#" -gt 0 ]]; then
